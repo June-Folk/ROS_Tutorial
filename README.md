@@ -69,7 +69,23 @@ qix stack install ROS_Tutorial --novnc
 <details> <summary> <strong> Windows</strong></summary>
 
 <hr>
+*WSL (Windows Subsystem for Linux) allows Windows to run a native Linux environment. All tutorial commands must run inside this Linux environment.*
 
+1. From the **Microsoft Store**, install:
+       - **[Windows Terminal](https://aka.ms/terminal)**
+       - **[Ubuntu 24.04 LTS](https://apps.microsoft.com/detail/9nz3klhxdjp5)**
+
+2. Launch **Ubuntu 24.04** from your Start menu once to set your Linux username and
+  password.
+
+3. **Always enter WSL before working:**
+       Whenever doing anything related to this tutorial or developing ROS code:
+       - **Recommended:** Open **Windows Terminal** and launch an **Ubuntu** tab (or type `wsl`).
+       - *Alternatively:* Open PowerShell or Command Prompt and run `wsl`.
+       - Ensure your prompt shows your Linux user (e.g., `user@computer:~$`). *Never run Linux/ROS commands directly in standard PowerShell or CMD.*
+
+
+    
 1. Open PowerShell or Windows Command Prompt in admin mode, run:
 ```powershell
 wsl --install
