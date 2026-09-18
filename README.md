@@ -39,8 +39,7 @@ First, install Docker Desktop. [Installation Instructions](https://docs.docker.c
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-2. Set up SSH keys for pulling code from GT GitHub and commercial GitHub if you have not already.
-
+2. Set up SSH keys for pulling code from GT GitHub and commercial GitHub if you have not already ([instructions below](#setting-up-ssh-keys)).
 
 3. Install `qix`:
 ```bash
@@ -50,14 +49,19 @@ uv tool install git+https://github.gatech.edu/ASDL-Robotics/qix.git
 
 4. Clone your forked `ROS_Tutorial` repository:
 ```bash
-git clone https://github.com/<your-github-username>/ROS_Tutorial.git
+git clone git@github.com:<your-github-username>/ROS_Tutorial.git
 ```
 
 5. Update the source code reference for `stinger-software` in the `qixstack.toml` to refer to your fork by altering the namespace variable from `gt-marine-robotics-group` to your GitHub username:
 
 ```bash
+nano ROS_Tutorial/qixstack.toml
+```
+Find the `stinger-software` line and change the namespace to your username:
+```toml
 stinger-software = { server = "github.com", namespace = "<your-github-username>", name = "stinger-software", version = "main" }
 ```
+Save and exit: press `Ctrl + O`, press `Enter`, then press `Ctrl + X`.
 
 6.  Install the stack from your workspace directory (one directory above `ROS_Tutorial`):
 ```bash
@@ -74,26 +78,21 @@ qix stack install ROS_Tutorial --novnc
 1. From the **Microsoft Store**, install:
        - **[Windows Terminal](https://aka.ms/terminal)**
        - **[Ubuntu 24.04 LTS](https://apps.microsoft.com/detail/9nz3klhxdjp5)**
-
-2. Launch **Ubuntu 24.04** from your Start menu once to set your Linux username and
-  password.
-
-3. **Always enter WSL before working:**
-       Whenever doing anything related to this tutorial or developing ROS code:
-       - **Recommended:** Open **Windows Terminal** and launch an **Ubuntu** tab (or type `wsl`).
-       - *Alternatively:* Open PowerShell or Command Prompt and run `wsl`.
-       - Ensure your prompt shows your Linux user (e.g., `user@computer:~$`). *Never run Linux/ROS commands directly in standard PowerShell or CMD.*
-
-
     
-1. Open PowerShell or Windows Command Prompt in admin mode, run:
-```powershell
-wsl --install
-```
+    *(Note: If launching Ubuntu gives an error that WSL is not enabled, right-click Windows Terminal, select "Run as administrator", run `wsl --install`, and restart your PC).*
+    
+2. Open Ubuntu in Windows Terminal:
+       - Open **Windows Terminal**.
+       - Click the **`+`** dropdown at the top and select **Ubuntu 24.04** (or type `wsl` and press Enter).
+       - On first launch, enter a Linux username and password when prompted.
+    
+3. **Always enter WSL before working:**
+       - Any time you work on this tutorial or develop ROS code, make sure you are inside your Ubuntu session in Windows Terminal.
+       - Do not run tutorial commands directly in standard Windows PowerShell or Command Prompt.
 
-2. Launch Ubuntu by running `wsl` in PowerShell. Ensure Docker is running (either inside WSL2 or via Docker Desktop with WSL2 integration enabled).
+4. **Do NOT install Docker Desktop on Windows.** Stay inside your Ubuntu terminal and follow the **Ubuntu / Linux** step below to install Docker and the tutorial stack natively inside WSL.
 
-3. Follow the steps in the Ubuntu setup guide below from within your WSL terminal.
+*(Note for existing Docker Desktop users: If you already have Docker Desktop installed on Windows, open Docker Desktop Settings -> Resources -> WSL Integration, uncheck Ubuntu, and click Apply & Restart to avoid socket conflicts).*
 
 <hr>
 
@@ -102,30 +101,40 @@ wsl --install
 <details> <summary> <strong> Ubuntu / Linux</strong></summary>
 
 <hr>
+1. Install Docker and ensure your user has permission to run Docker without sudo:
 
-1. Ensure Docker is installed and your user has permission to run Docker without sudo:
 ```bash
+sudo apt update && sudo apt install -y docker.io
+sudo service docker start
 sudo usermod -aG docker $USER && newgrp docker
 ```
+*(WSL Note: If Docker is not running after restarting your PC, run `sudo service docker start`)*
 
-2. Install [uv](https://docs.astral.sh/uv/getting-started/installation/) and `qix`:
+2. Set up SSH keys for pulling code from GT GitHub and commercial GitHub if you have not already ([instructions below](#setting-up-ssh-keys)).
+
+3. Install [uv](https://docs.astral.sh/uv/getting-started/installation/) and `qix`:
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 uv tool install git+https://github.gatech.edu/ASDL-Robotics/qix.git
 ```
 
-3. Clone your forked `ROS_Tutorial` repository and install the stack from your workspace directory (one directory above `ROS_Tutorial`):
+4. Clone your forked `ROS_Tutorial` repository and install the stack from your workspace directory (one directory above `ROS_Tutorial`):
 ```bash
-git clone https://github.com/<your-github-username>/ROS_Tutorial.git
+git clone git@github.com:<your-github-username>/ROS_Tutorial.git
 ```
 
-4. Update the source code reference for `stinger-software` in the `qixstack.toml` to refer to your fork by altering the namespace variable from `gt-marine-robotics-group` to your GitHub username:
+5. Update the source code reference for `stinger-software` in the `qixstack.toml` to refer to your fork by altering the namespace variable from `gt-marine-robotics-group` to your GitHub username:
 
 ```bash
+nano ROS_Tutorial/qixstack.toml
+```
+Find the `stinger-software` line and change the namespace to your username:
+```toml
 stinger-software = { server = "github.com", namespace = "<your-github-username>", name = "stinger-software", version = "main" }
 ```
+Save and exit: press `Ctrl + O`, press `Enter`, then press `Ctrl + X`.
 
-5.  Install the stack from your workspace directory (one directory above `ROS_Tutorial`):
+6.  Install the stack from your workspace directory (one directory above `ROS_Tutorial`):
 ```bash
 qix stack install ROS_Tutorial
 ```
@@ -134,6 +143,38 @@ qix stack install ROS_Tutorial
 <hr>
 
 </details>
+
+
+<details id="setting-up-ssh-keys"> <summary> <strong>SSH Key Instructions</strong></summary>
+
+<hr>
+
+Generate a single key on your machine (Mac, Linux, or inside Ubuntu WSL) and add it to both GitHub and GT GitHub:
+
+1. Generate a new SSH key:
+```bash
+ssh-keygen -t ed25519 -C "your_gt_email@gatech.edu"
+```
+*(Press **Enter** for all prompts to use defaults and leave the passphrase blank).*
+
+2. Display and copy your public key:
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+
+3. Paste the exact same key into both accounts:
+    - **GitHub.com:** https://github.com/settings/keys -> **New SSH Key**
+    - **GT GitHub:** https://github.gatech.edu/settings/keys -> **New SSH Key**
+
+4. Verify your connection:
+```bash
+ssh -T git@github.com && ssh -T git@github.gatech.edu
+ ```
+
+<hr>
+
+</details>
+
 
 ## Topic 0: Editing, Building, Testing Instructions
 
