@@ -43,8 +43,9 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 3. Install `qix`:
 ```bash
-uv tool install git+https://github.gatech.edu/ASDL-Robotics/qix.git
+uv tool install git+ssh://git@github.gatech.edu/ASDL-Robotics/qix.git
 ```
+
 *(Alternatively, if you do not have uv: `pip install qix`)*
 
 4. Clone your forked `ROS_Tutorial` repository:
@@ -115,7 +116,7 @@ sudo usermod -aG docker $USER && newgrp docker
 3. Install [uv](https://docs.astral.sh/uv/getting-started/installation/) and `qix`:
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
-uv tool install git+https://github.gatech.edu/ASDL-Robotics/qix.git
+uv tool install git+ssh://git@github.gatech.edu/ASDL-Robotics/qix.git
 ```
 
 4. Clone your forked `ROS_Tutorial` repository and install the stack from your workspace directory (one directory above `ROS_Tutorial`):
