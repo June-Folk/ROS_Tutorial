@@ -210,7 +210,19 @@ To start a multi-pane terminal session (optional), run `tmux` or `tmuxp`.
 
 We **highly** recommend using Visual Studio Code (VSCode) for all coding. All senior members will be familiar with working in VSCode. The following instructions will assume that you are using VSCode.
 
-If you haven't already, install VSCode. [Instructions Here](https://code.visualstudio.com/). Make sure your container is running (see **Section 0.1**). Then, open VSCode.
+If you haven't already, install VSCode. [Instructions Here](https://code.visualstudio.com/). Make sure your container is running (see **Section 0.1**). 
+
+[!IMPORTANT]
+**For Windows (WSL) Users:**
+1. Install regular **VSCode on Windows** and install the **WSL** extension from the VSCode Marketplace.
+2. Open VSCode from **inside your Ubuntu WSL terminal** by running:
+```bash
+code .
+```
+*(This connects VSCode to your WSL environment so it can communicate with Docker).*
+
+
+Then, open VSCode.
 
 <img src="assets/vscode_home.png" width="800"/>
 
