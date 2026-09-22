@@ -1330,10 +1330,10 @@ To start, you will need the following compute hardware:
 - Raspberry PI power supply
 - microHDMI to HDMI cable
 
-This section goes through configuring the OS by flashing the microSD card with Ubuntu 22.04 64-bit operating system, setting up ssh permission, and installing ROS2. 
+This section goes through configuring the OS by flashing the microSD card with Ubuntu 24.04 64-bit operating system, setting up ssh permission, and installing ROS2. 
 
 #### 8.1.a Operating system in the PI
-  1. Follow the instructions from the following link to flash Ubuntu 22.04 onto the microSD card: [https://ubuntu.com/download/raspberry-pi](url). Follow the `Desktop` tutorial. You need your laptop to do this.
+  1. Follow the instructions from the following link to flash Ubuntu 24.04 onto the microSD card: [https://ubuntu.com/download/raspberry-pi](url). Follow the `Desktop` tutorial. You need your laptop to do this.
   2. Insert the flashed microSD card into the Raspberry Pi and connect the Pi to a monitor, keyboard, and mouse. Power the Pi, and the monitor will turn on automatically. 
   3. Set the username to `tugxx`, with `xx` be you team number. If you are team 5, it will be `tug05`. Please set the password to `boats0519`.
   4. To give the tug a static IP address, we need to be talking to a travel router that talks to GTother (for example). We have router GLiNet AX3000 in lab. So basically, `GTother` (if you needs internet) -> `Router` -> both your laptop and tug is connected to `Router` -> can `ssh`
