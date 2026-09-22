@@ -108,6 +108,7 @@ qix stack install ROS_Tutorial --novnc
 sudo apt update && sudo apt install -y docker.io
 sudo service docker start
 sudo usermod -aG docker $USER && newgrp docker
+sudo apt update && sudo apt install -y docker-compose-plugin
 ```
 *(WSL Note: If Docker is not running after restarting your PC, run `sudo service docker start`)*
 
