@@ -194,7 +194,7 @@ qix stack enter ros-tutorial
 - The argument is the stack name **`ros-tutorial`** (all lowercase, kebab-case as defined in `qixstack.toml`), rather than `ROS_Tutorial`.
 - This command will automatically start the container if it is stopped and drop you into a bash shell inside the container environment.
 
-To access the container's desktop GUI, open `http://localhost:8080/vnc.html` in your web browser.
+If container installed with --novnc flag, to access the container's desktop GUI, open `http://localhost:8080/vnc.html` in your web browser.
 
 To start a multi-pane terminal session (optional), run `tmux` or `tmuxp`.
 
